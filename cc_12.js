@@ -33,3 +33,37 @@ metricCardsArray.forEach(card => {
     // Optionally change the background color to visually indicate an update
     card.style.backgroundColor = "#d1ffd1"; // light green background
 });
+
+//Task 3: Dynamic Inventory Management – Adding and Removing Items
+//Function to add a new product item to the inventory list
+function addInventoryItem(productName) {
+     // Select the inventory list container
+     const inventoryList = document.getElementById("inventoryList");
+     // Create a new <li> element for the product item
+     const productItem = document.createElement("li");
+     // Set a class and a custom data attribute for the product item
+     productItem.setAttribute("class", "product-item");
+     productItem.setAttribute("data-product", productName);
+     
+     // Set the product name as the text content
+     productItem.textContent = productName;
+     
+     // Add a click event listener to remove the item when clicked
+     productItem.addEventListener("click", function() {
+         removeInventoryItem(productItem);
+     });
+     
+     // Append the new product item to the inventory list
+     inventoryList.appendChild(productItem);
+}
+
+// Function to remove a specific product item from the inventory list
+function removeInventoryItem(item) {
+    // Select the inventory list container
+    const inventoryList = document.getElementById("inventoryList");
+    // Remove the specified item
+    inventoryList.removeChild(item);
+}
+//Example product items
+addProductItem("Juice");
+addProductItem("Bread");
