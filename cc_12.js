@@ -69,36 +69,24 @@ addProductItem("Juice");
 addProductItem("Bread");
 
 //Task 4: Demonstrated Event Bubbiling in Customer Section
-// Select the parent container for the customer section
-const customerSection = document.getElementById("customerSection");
 
-// Attach an event listener to the customer section (parent container)
+const customerCards = document.querySelectorAll(".customer-card"); //using querySelectorAll to select all customer cards
+const customerSection = document.getElementById("customerSection"); //getElemented is used to select the parent container
+//Customer clicker section below
 customerSection.addEventListener("click", () => {
     console.log("Customer Section Clicked");
 });
 
-// Function to add a customer card dynamically
-function addCustomerCard(name) {
-    // Create a new <div> element for the customer card
-    const customerCard = document.createElement("div");
-    
-    // Add the "customer-card" class using classList for clarity
-    customerCard.classList.add("customer-card");
-    
-    // Set the customer name as the text content of the card
-    customerCard.textContent = name;
-    
-    // Attach an event listener to the customer card
-    customerCard.addEventListener("click", (event) => {
-        console.log("Customer card clicked");
-        // Stop the event from bubbling up to the parent container
-        event.stopPropagation();
-    });
-    
-    // Append the customer card to the customer section container
-    customerSection.appendChild(customerCard);
-}
+customerCards.forEach(card => { //Iterates over each customer card
+    card.addEventListener("click", (event) => { //Attaches click event to each customer card
+        console.log(`User clicked ${event.target.textContent}`); //logs a message when a customer card is clicked.
+        event.stopPropagation(); //calls the stopPropagation() method on the event object to prevent event bubbling.
+    });    
+});
 
+customerSection.addEventListener("click", () => { //Attach clickn event to listen to the parent container
+    console.log(`User clicked customerSection`); //Logs a message when the parent container is clicked.
+});    
 // Add a couple of customer cards dynamically
 addCustomerCard("Customer A");
 addCustomerCard("Customer B");
